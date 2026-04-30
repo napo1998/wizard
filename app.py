@@ -31,23 +31,44 @@ html, body, [data-testid="stAppViewContainer"] {
 }
 [data-testid="stMain"] { background: transparent; }
 
+/* Global text color - ensure everything is readable */
+body, p, span, div, label, li, td, th,
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li,
+[data-testid="stMarkdownContainer"] span {
+    color: #111827;
+}
+
+/* Headings - dark and clear */
+h1, h2, h3, h4 {
+    color: #1e3a5f !important;
+    -webkit-text-fill-color: #1e3a5f !important;
+    font-weight: 800 !important;
+}
+
+/* Caption / small text */
+[data-testid="stCaptionContainer"] p,
+small { color: #374151 !important; }
+
 /* Sidebar */
 [data-testid="stSidebar"] {
     background: linear-gradient(180deg, #0c2461 0%, #1e3799 100%) !important;
 }
-[data-testid="stSidebar"] .stMarkdown,
+[data-testid="stSidebar"] *,
+[data-testid="stSidebar"] .stMarkdown p,
 [data-testid="stSidebar"] label,
-[data-testid="stSidebar"] p,
 [data-testid="stSidebar"] span,
 [data-testid="stSidebar"] h1,
 [data-testid="stSidebar"] h2,
 [data-testid="stSidebar"] h3 {
     color: #dbeafe !important;
+    -webkit-text-fill-color: #dbeafe !important;
 }
 [data-testid="stSidebar"] .stButton > button {
     background: rgba(255,255,255,0.12) !important;
     border: 1px solid rgba(255,255,255,0.25) !important;
     color: white !important;
+    -webkit-text-fill-color: white !important;
     border-radius: 8px !important;
 }
 [data-testid="stSidebar"] .stButton > button:hover {
@@ -60,6 +81,7 @@ button[kind="primary"] {
     border: none !important;
     border-radius: 10px !important;
     color: white !important;
+    -webkit-text-fill-color: white !important;
     font-weight: 600 !important;
     box-shadow: 0 4px 15px rgba(37,99,235,0.35) !important;
     transition: all 0.2s ease !important;
@@ -74,6 +96,7 @@ button[kind="secondary"] {
     border-radius: 10px !important;
     border: 1.5px solid #93c5fd !important;
     color: #1d4ed8 !important;
+    -webkit-text-fill-color: #1d4ed8 !important;
     font-weight: 500 !important;
 }
 
@@ -87,6 +110,7 @@ button[kind="secondary"] {
 textarea {
     border-radius: 10px !important;
     border: 1.5px solid #93c5fd !important;
+    color: #111827 !important;
 }
 textarea:focus {
     border-color: #2563eb !important;
@@ -97,14 +121,6 @@ textarea:focus {
 [data-testid="stCode"] {
     border-radius: 10px !important;
     border: 1px solid #bfdbfe !important;
-}
-
-/* Headings gradient */
-h1 {
-    background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800 !important;
 }
 </style>
 """, unsafe_allow_html=True)
