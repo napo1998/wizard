@@ -25,13 +25,14 @@ st.set_page_config(
 # ── Global CSS theme ──────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-/* Background */
+/* ── Base & Background ───────────────────────────────────────── */
 html, body, [data-testid="stAppViewContainer"] {
-    background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
+    background: #f0f6ff;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 [data-testid="stMain"] { background: transparent; }
 
-/* Global text color - ensure everything is readable */
+/* ── Global text ─────────────────────────────────────────────── */
 body, p, span, div, label, li, td, th,
 [data-testid="stMarkdownContainer"] p,
 [data-testid="stMarkdownContainer"] li,
@@ -39,20 +40,24 @@ body, p, span, div, label, li, td, th,
     color: #111827;
 }
 
-/* Headings - dark and clear */
+/* ── Headings ────────────────────────────────────────────────── */
 h1, h2, h3, h4 {
     color: #1e3a5f !important;
     -webkit-text-fill-color: #1e3a5f !important;
     font-weight: 800 !important;
+    letter-spacing: -0.3px !important;
 }
 
-/* Caption / small text */
-[data-testid="stCaptionContainer"] p,
-small { color: #374151 !important; }
+/* ── Caption / helper text ───────────────────────────────────── */
+[data-testid="stCaptionContainer"] p, small {
+    color: #4b5563 !important;
+    font-size: 0.875rem !important;
+}
 
-/* Sidebar */
+/* ── Sidebar ─────────────────────────────────────────────────── */
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #0c2461 0%, #1e3799 100%) !important;
+    background: linear-gradient(180deg, #0a1f44 0%, #1a3a8f 100%) !important;
+    border-right: 1px solid rgba(255,255,255,0.08) !important;
 }
 [data-testid="stSidebar"] *,
 [data-testid="stSidebar"] .stMarkdown p,
@@ -64,76 +69,124 @@ small { color: #374151 !important; }
     color: #dbeafe !important;
     -webkit-text-fill-color: #dbeafe !important;
 }
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+    gap: 0.5rem;
+}
 [data-testid="stSidebar"] .stButton > button {
-    background: rgba(255,255,255,0.12) !important;
-    border: 1px solid rgba(255,255,255,0.25) !important;
+    background: rgba(255,255,255,0.10) !important;
+    border: 1px solid rgba(255,255,255,0.20) !important;
     color: white !important;
     -webkit-text-fill-color: white !important;
-    border-radius: 8px !important;
+    border-radius: 10px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s !important;
 }
 [data-testid="stSidebar"] .stButton > button:hover {
-    background: rgba(255,255,255,0.22) !important;
+    background: rgba(255,255,255,0.20) !important;
+    border-color: rgba(255,255,255,0.35) !important;
 }
 
-/* Primary buttons */
+/* ── Primary buttons ─────────────────────────────────────────── */
 button[kind="primary"] {
-    background: linear-gradient(135deg, #1d4ed8, #2563eb) !important;
+    background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%) !important;
     border: none !important;
-    border-radius: 10px !important;
+    border-radius: 12px !important;
     color: white !important;
     -webkit-text-fill-color: white !important;
-    font-weight: 600 !important;
-    box-shadow: 0 4px 15px rgba(37,99,235,0.35) !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.2px !important;
+    box-shadow: 0 4px 14px rgba(37,99,235,0.40) !important;
     transition: all 0.2s ease !important;
 }
 button[kind="primary"]:hover {
-    box-shadow: 0 6px 22px rgba(37,99,235,0.55) !important;
-    transform: translateY(-1px) !important;
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%) !important;
+    box-shadow: 0 6px 20px rgba(37,99,235,0.55) !important;
+    transform: translateY(-2px) !important;
 }
 
-/* Secondary buttons */
+/* ── Secondary buttons ───────────────────────────────────────── */
 button[kind="secondary"] {
-    border-radius: 10px !important;
-    border: 1.5px solid #93c5fd !important;
+    border-radius: 12px !important;
+    border: 2px solid #bfdbfe !important;
     color: #1d4ed8 !important;
     -webkit-text-fill-color: #1d4ed8 !important;
     background: #ffffff !important;
     font-weight: 600 !important;
+    transition: all 0.2s !important;
 }
 button[kind="secondary"]:hover {
     background: #eff6ff !important;
     border-color: #2563eb !important;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.15) !important;
 }
 
-/* Progress bar */
+/* ── Progress bar ────────────────────────────────────────────── */
+[data-testid="stProgressBar"] > div {
+    background-color: #dbeafe !important;
+    border-radius: 99px !important;
+    height: 8px !important;
+}
 [data-testid="stProgressBar"] > div > div {
     background: linear-gradient(90deg, #2563eb, #38bdf8) !important;
-    border-radius: 10px !important;
+    border-radius: 99px !important;
 }
 
-/* Text areas */
+/* ── Textarea ────────────────────────────────────────────────── */
 textarea {
-    border-radius: 10px !important;
-    border: 1.5px solid #93c5fd !important;
+    border-radius: 12px !important;
+    border: 2px solid #bfdbfe !important;
     color: #111827 !important;
     background-color: #ffffff !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    transition: border-color 0.2s !important;
 }
 textarea:focus {
     border-color: #2563eb !important;
-    box-shadow: 0 0 0 3px rgba(37,99,235,0.15) !important;
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.12) !important;
     background-color: #ffffff !important;
 }
 
-/* Progress bar track */
-[data-testid="stProgressBar"] > div {
-    background-color: #dbeafe !important;
+/* ── Info / success / warning boxes ─────────────────────────── */
+[data-testid="stInfo"] {
+    background: #eff6ff !important;
+    border-left: 4px solid #3b82f6 !important;
+    border-radius: 10px !important;
+    color: #1e3a5f !important;
+}
+[data-testid="stSuccess"] {
+    background: #f0fdf4 !important;
+    border-left: 4px solid #22c55e !important;
+    border-radius: 10px !important;
+}
+[data-testid="stWarning"] {
+    background: #fffbeb !important;
+    border-left: 4px solid #f59e0b !important;
     border-radius: 10px !important;
 }
 
-/* Code block */
+/* ── Code block ──────────────────────────────────────────────── */
 [data-testid="stCode"] {
-    border-radius: 10px !important;
+    border-radius: 12px !important;
     border: 1px solid #bfdbfe !important;
+}
+
+/* ── Divider ─────────────────────────────────────────────────── */
+hr { border-color: #dbeafe !important; }
+
+/* ── File uploader ───────────────────────────────────────────── */
+[data-testid="stFileUploader"] {
+    border: 2px dashed #93c5fd !important;
+    border-radius: 12px !important;
+    background: #f8fbff !important;
+}
+
+/* ── Expander ────────────────────────────────────────────────── */
+[data-testid="stExpander"] {
+    border: 1px solid #dbeafe !important;
+    border-radius: 12px !important;
+    background: #ffffff !important;
 }
 </style>
 """, unsafe_allow_html=True)
