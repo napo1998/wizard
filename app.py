@@ -407,11 +407,12 @@ if step == "welcome":
             napo_src = _img_b64("napo.jpg")
         except Exception:
             napo_src = ""
+        napo_img_tag = f"<img src='{napo_src}' width='90' style='border-radius:50%;border:3px solid #2563eb;'>" if napo_src else ""
         st.markdown(f"""
         <div style="display:flex;align-items:center;gap:14px;
             background:white;border-radius:16px;padding:16px 20px;
             border:1px solid #bfdbfe;box-shadow:0 4px 16px rgba(37,99,235,0.10);">
-            {\"<img src='\"+napo_src+\"' width='90' style='border-radius:50%;border:3px solid #2563eb;'>\" if napo_src else \"\"}
+            {napo_img_tag}
             <div>
                 <div style="font-size:13px;color:#6b7280;">Created by</div>
                 <a href="https://www.linkedin.com/in/napo1998/" target="_blank"
@@ -426,11 +427,12 @@ if step == "welcome":
             ai_src = _img_b64("image.png")
         except Exception:
             ai_src = ""
+        ai_img_tag = f"<img src='{ai_src}' width='56' style='border-radius:10px;'>" if ai_src else ""
         st.markdown(f"""
         <div style="display:flex;align-items:center;gap:14px;
             background:white;border-radius:16px;padding:16px 20px;
             border:1px solid #bfdbfe;box-shadow:0 4px 16px rgba(37,99,235,0.10);">
-            {"<img src='"+ai_src+"' width='56' style='border-radius:10px;'>" if ai_src else ""}
+            {ai_img_tag}
             <div>
                 <div style="font-size:13px;color:#6b7280;">Powered by</div>
                 <div style="font-weight:800;color:#1d4ed8;font-size:16px;">Artificial Intelligence</div>
