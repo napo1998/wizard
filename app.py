@@ -491,19 +491,19 @@ elif step == "llm":
             border = "2px solid #2563eb" if selected else "1px solid #dbeafe"
             bg     = "#eff6ff" if selected else "#ffffff"
             shadow = "0 4px 20px rgba(37,99,235,0.18)" if selected else "0 2px 8px rgba(37,99,235,0.07)"
-            cost_html = f"<div style='color:#1d4ed8;font-size:12px;'>💰 ${llm['cost_per_1k']}/1k tokens</div>" if llm['cost_per_1k'] else ""
+            cost_html = f"<div style='color:#111827;font-size:12px;'>💰 ${llm['cost_per_1k']}/1k tokens</div>" if llm['cost_per_1k'] else ""
             strengths_html = "<br>".join(f"• {s}" for s in llm['strengths'][:3])
             st.markdown(
                 f"""<div style="border:{border};border-radius:14px;padding:18px 14px;
                     background:{bg};min-height:220px;box-shadow:{shadow};
                     transition:all 0.2s;">
-                    <div style="font-size:1.1rem;font-weight:700;color:#1e3a5f;margin-bottom:4px;">
+                    <div style="font-size:1.1rem;font-weight:700;color:#111827;margin-bottom:4px;">
                         {llm['color']} {llm['name']}
                     </div>
-                    <div style="color:#6b7280;font-size:12px;margin-bottom:10px;">{llm['desc']}</div>
-                    <div style="color:#374151;font-size:12px;">📏 {llm['context_limit']:,} tokens</div>
+                    <div style="color:#374151;font-size:12px;margin-bottom:10px;">{llm['desc']}</div>
+                    <div style="color:#111827;font-size:12px;">📏 {llm['context_limit']:,} tokens</div>
                     {cost_html}
-                    <div style="margin-top:10px;color:#374151;font-size:12px;">
+                    <div style="margin-top:10px;color:#111827;font-size:12px;">
                         <b>Strengths:</b><br>{strengths_html}
                     </div>
                 </div>""",
