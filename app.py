@@ -434,8 +434,8 @@ if step == "welcome":
             border:1px solid #bfdbfe;box-shadow:0 4px 16px rgba(37,99,235,0.10);">
             {ai_img_tag}
             <div>
-                <div style="font-size:13px;color:#6b7280;">Powered by</div>
-                <div style="font-weight:800;color:#1d4ed8;font-size:16px;">Artificial Intelligence</div>
+                <div style="font-size:13px;color:#6b7280;">Empowered by</div>
+                <div style="font-weight:800;color:#1d4ed8;font-size:16px;">AI Community</div>
             </div>
         </div>
         """, unsafe_allow_html=True)
