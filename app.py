@@ -411,7 +411,7 @@ if step == "welcome":
         <div style="display:flex;align-items:center;gap:14px;
             background:white;border-radius:16px;padding:16px 20px;
             border:1px solid #bfdbfe;box-shadow:0 4px 16px rgba(37,99,235,0.10);">
-            {"<img src='"+napo_src+"' width='56' style='border-radius:50%;border:3px solid #2563eb;'>" if napo_src else ""}
+            {\"<img src='\"+napo_src+\"' width='90' style='border-radius:50%;border:3px solid #2563eb;'>\" if napo_src else \"\"}
             <div>
                 <div style="font-size:13px;color:#6b7280;">Created by</div>
                 <a href="https://www.linkedin.com/in/napo1998/" target="_blank"
