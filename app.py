@@ -1,3 +1,4 @@
+# Created by Napoleon Perez
 import streamlit as st
 import json
 import math
@@ -9,6 +10,93 @@ st.set_page_config(
     page_icon="✨",
     layout="wide",
 )
+
+# ── Global CSS theme ──────────────────────────────────────────────────────────
+st.markdown("""
+<style>
+/* Background */
+html, body, [data-testid="stAppViewContainer"] {
+    background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+}
+[data-testid="stMain"] { background: transparent; }
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #1e1b4b 0%, #312e81 100%) !important;
+}
+[data-testid="stSidebar"] .stMarkdown,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    color: #e0e7ff !important;
+}
+[data-testid="stSidebar"] .stButton > button {
+    background: rgba(255,255,255,0.12) !important;
+    border: 1px solid rgba(255,255,255,0.25) !important;
+    color: white !important;
+    border-radius: 8px !important;
+}
+[data-testid="stSidebar"] .stButton > button:hover {
+    background: rgba(255,255,255,0.22) !important;
+}
+
+/* Primary buttons */
+button[kind="primary"] {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    color: white !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 15px rgba(109,40,217,0.30) !important;
+    transition: all 0.2s ease !important;
+}
+button[kind="primary"]:hover {
+    box-shadow: 0 6px 22px rgba(109,40,217,0.50) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Secondary buttons */
+button[kind="secondary"] {
+    border-radius: 10px !important;
+    border: 1.5px solid #c4b5fd !important;
+    color: #6d28d9 !important;
+    font-weight: 500 !important;
+}
+
+/* Progress bar */
+[data-testid="stProgressBar"] > div > div {
+    background: linear-gradient(90deg, #7c3aed, #4f46e5) !important;
+    border-radius: 10px !important;
+}
+
+/* Text areas */
+textarea {
+    border-radius: 10px !important;
+    border: 1.5px solid #c4b5fd !important;
+}
+textarea:focus {
+    border-color: #7c3aed !important;
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.15) !important;
+}
+
+/* Code block */
+[data-testid="stCode"] {
+    border-radius: 10px !important;
+    border: 1px solid #ddd6fe !important;
+}
+
+/* Headings gradient */
+h1 {
+    background: linear-gradient(135deg, #6d28d9, #4338ca);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800 !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # ── Constants ──────────────────────────────────────────────────────────────────
 LLM_OPTIONS = [
@@ -286,6 +374,18 @@ if step == "welcome":
     st.markdown("# ✨ LLM Prompt Optimization Wizard")
     st.markdown("### Create perfectly optimised prompts tailored to your LLM")
 
+    _photo_col, _text_col = st.columns([1, 5])
+    with _photo_col:
+        st.image("napo.jpg", width=80)
+    with _text_col:
+        st.caption("Created by [Napoleon Perez](https://www.linkedin.com/in/napo1998/)")
+
+    _ai_col, _ai_text_col = st.columns([1, 5])
+    with _ai_col:
+        st.image("image.png", width=80)
+    with _ai_text_col:
+        st.caption("Empowered by AI")
+
     col1, col2, col3 = st.columns(3)
     with col1:
         st.info("🧠 **LLM-Specific Optimization**\n\nTailored advice for Claude, GPT-4, Gemini, and more")
@@ -310,8 +410,8 @@ elif step == "llm":
     for col, llm in zip(cols, LLM_OPTIONS):
         with col:
             selected = st.session_state.selected_llm == llm["id"]
-            border = "2px solid #6366f1" if selected else "1px solid #e5e7eb"
-            bg     = "#eef2ff" if selected else "#ffffff"
+            border = "2px solid #7c3aed" if selected else "1px solid #e5e7eb"
+            bg     = "#ede9fe" if selected else "#ffffff"
             st.markdown(
                 f"""<div style="border:{border};border-radius:12px;padding:16px;background:{bg};min-height:200px;">
                 <b>{llm['color']} {llm['name']}</b><br>
@@ -354,13 +454,13 @@ elif step == "experience":
 
     for level in EXPERIENCE_LEVELS:
         selected = st.session_state.experience == level["id"]
-        bg     = "#eef2ff" if selected else "#f9fafb"
-        border = "2px solid #6366f1" if selected else "1px solid #e5e7eb"
+        bg     = "#ede9fe" if selected else "#f9fafb"
+        border = "2px solid #7c3aed" if selected else "1px solid #e5e7eb"
         st.markdown(
             f"""<div style="border:{border};border-radius:12px;padding:20px;background:{bg};margin-bottom:12px;">
             <b>{'✅ ' if selected else ''}{level['title']}</b><br>
             <span style="color:#6b7280">{level['desc']}</span><br><br>
-            {''.join(f"<span style='background:#e0e7ff;border-radius:4px;padding:2px 8px;margin-right:6px;font-size:12px'>{f}</span>" for f in level['features'])}
+            {''.join(f"<span style='background:#ddd6fe;border-radius:4px;padding:2px 8px;margin-right:6px;font-size:12px;color:#5b21b6'>{f}</span>" for f in level['features'])}
             </div>""",
             unsafe_allow_html=True,
         )
@@ -389,9 +489,9 @@ elif step == "mode":
     mc1, mc2 = st.columns(2)
     with mc1:
         g_selected = st.session_state.mode == "guided"
-        g_border = "2px solid #6366f1" if g_selected else "1px solid #e5e7eb"
+        g_border = "2px solid #7c3aed" if g_selected else "1px solid #e5e7eb"
         st.markdown(
-            f"""<div style="border:{g_border};border-radius:12px;padding:24px;background:{'#eef2ff' if g_selected else '#fff'};text-align:center;">
+            f"""<div style="border:{g_border};border-radius:12px;padding:24px;background:{'#ede9fe' if g_selected else '#fff'};text-align:center;">
             <h3>💬 Guided Questionnaire</h3>
             <p style="color:#6b7280">Step-by-step questions to build your perfect prompt</p>
             <br>✅ Perfect for beginners<br>✅ Ensures all best practices<br>✅ Contextual help & tips
@@ -404,9 +504,9 @@ elif step == "mode":
 
     with mc2:
         e_selected = st.session_state.mode == "editor"
-        e_border = "2px solid #6366f1" if e_selected else "1px solid #e5e7eb"
+        e_border = "2px solid #7c3aed" if e_selected else "1px solid #e5e7eb"
         st.markdown(
-            f"""<div style="border:{e_border};border-radius:12px;padding:24px;background:{'#eef2ff' if e_selected else '#fff'};text-align:center;">
+            f"""<div style="border:{e_border};border-radius:12px;padding:24px;background:{'#ede9fe' if e_selected else '#fff'};text-align:center;">
             <h3>✏️ Editor Mode</h3>
             <p style="color:#6b7280">Direct editing with real-time optimisation suggestions</p>
             <br>✅ Real-time feedback<br>✅ Full creative control<br>✅ Live optimisation scoring
@@ -585,9 +685,10 @@ elif step == "result":
         clr = "#22c55e" if score >= 85 else "#f59e0b" if score >= 70 else "#ef4444"
         st.markdown(
             f"""<div style="text-align:center;padding:24px;border-radius:12px;
-                background:#f9fafb;border:1px solid #e5e7eb;">
+                background:linear-gradient(135deg,#f5f3ff,#ede9fe);border:1px solid #ddd6fe;
+                box-shadow:0 4px 20px rgba(124,58,237,0.10);">
                 <div style="font-size:3rem;font-weight:bold;color:{clr}">{score}%</div>
-                <div style="color:#6b7280">{'🌟 Excellent!' if score>=85 else '👍 Good' if score>=70 else '⚠️ Needs work'}</div>
+                <div style="color:#6b7280;margin-top:4px">{'🌟 Excellent!' if score>=85 else '👍 Good' if score>=70 else '⚠️ Needs work'}</div>
             </div>""",
             unsafe_allow_html=True,
         )
