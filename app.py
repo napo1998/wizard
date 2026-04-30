@@ -17,7 +17,7 @@ def _img_b64(filename: str) -> str:
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="LLM Prompt Optimization Wizard",
+    page_title="LLM Prompt Optimization Wizard created by Napoleon Perez",
     page_icon="✨",
     layout="wide",
 )
