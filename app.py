@@ -488,15 +488,24 @@ elif step == "llm":
     for col, llm in zip(cols, LLM_OPTIONS):
         with col:
             selected = st.session_state.selected_llm == llm["id"]
-            border = "2px solid #2563eb" if selected else "1px solid #e5e7eb"
-            bg     = "#dbeafe" if selected else "#ffffff"
+            border = "2px solid #2563eb" if selected else "1px solid #dbeafe"
+            bg     = "#eff6ff" if selected else "#ffffff"
+            shadow = "0 4px 20px rgba(37,99,235,0.18)" if selected else "0 2px 8px rgba(37,99,235,0.07)"
+            cost_html = f"<div style='color:#1d4ed8;font-size:12px;'>💰 ${llm['cost_per_1k']}/1k tokens</div>" if llm['cost_per_1k'] else ""
+            strengths_html = "<br>".join(f"• {s}" for s in llm['strengths'][:3])
             st.markdown(
-                f"""<div style="border:{border};border-radius:12px;padding:16px;background:{bg};min-height:200px;">
-                <b>{llm['color']} {llm['name']}</b><br>
-                <small style="color:#6b7280">{llm['desc']}</small><br><br>
-                <small>📏 {llm['context_limit']:,} tokens</small><br>
-                {"<small>💰 $"+str(llm['cost_per_1k'])+"/1k tokens</small><br>" if llm['cost_per_1k'] else ""}
-                <br><small><b>Strengths:</b><br>{'<br>'.join('• '+s for s in llm['strengths'][:3])}</small>
+                f"""<div style="border:{border};border-radius:14px;padding:18px 14px;
+                    background:{bg};min-height:220px;box-shadow:{shadow};
+                    transition:all 0.2s;">
+                    <div style="font-size:1.1rem;font-weight:700;color:#1e3a5f;margin-bottom:4px;">
+                        {llm['color']} {llm['name']}
+                    </div>
+                    <div style="color:#6b7280;font-size:12px;margin-bottom:10px;">{llm['desc']}</div>
+                    <div style="color:#374151;font-size:12px;">📏 {llm['context_limit']:,} tokens</div>
+                    {cost_html}
+                    <div style="margin-top:10px;color:#374151;font-size:12px;">
+                        <b>Strengths:</b><br>{strengths_html}
+                    </div>
                 </div>""",
                 unsafe_allow_html=True,
             )
