@@ -97,7 +97,12 @@ button[kind="secondary"] {
     border: 1.5px solid #93c5fd !important;
     color: #1d4ed8 !important;
     -webkit-text-fill-color: #1d4ed8 !important;
-    font-weight: 500 !important;
+    background: #ffffff !important;
+    font-weight: 600 !important;
+}
+button[kind="secondary"]:hover {
+    background: #eff6ff !important;
+    border-color: #2563eb !important;
 }
 
 /* Progress bar */
@@ -557,13 +562,26 @@ elif step == "experience":
 
     for level in EXPERIENCE_LEVELS:
         selected = st.session_state.experience == level["id"]
-        bg     = "#dbeafe" if selected else "#f9fafb"
-        border = "2px solid #2563eb" if selected else "1px solid #e5e7eb"
+        bg        = "#eff6ff" if selected else "#ffffff"
+        border    = "2px solid #2563eb" if selected else "1px solid #dbeafe"
+        shadow    = "0 4px 20px rgba(37,99,235,0.15)" if selected else "0 2px 8px rgba(37,99,235,0.06)"
+        title_col = "#1d4ed8" if selected else "#1e3a5f"
+        badge_bg  = "#2563eb" if selected else "#dbeafe"
+        badge_col = "#ffffff" if selected else "#1d4ed8"
+        check     = "✅ " if selected else ""
+        badges    = "".join(
+            f"<span style='background:{badge_bg};color:{badge_col};border-radius:20px;"
+            f"padding:3px 12px;margin-right:6px;font-size:12px;font-weight:600;'>{f}</span>"
+            for f in level["features"]
+        )
         st.markdown(
-            f"""<div style="border:{border};border-radius:12px;padding:20px;background:{bg};margin-bottom:12px;">
-            <b>{'✅ ' if selected else ''}{level['title']}</b><br>
-            <span style="color:#6b7280">{level['desc']}</span><br><br>
-            {''.join(f"<span style='background:#bfdbfe;border-radius:4px;padding:2px 8px;margin-right:6px;font-size:12px;color:#1d4ed8'>{f}</span>" for f in level['features'])}
+            f"""<div style="border:{border};border-radius:16px;padding:24px 28px;
+                background:{bg};margin-bottom:4px;box-shadow:{shadow};">
+                <div style="font-size:1.15rem;font-weight:800;color:{title_col};margin-bottom:6px;">
+                    {check}{level['title']}
+                </div>
+                <div style="color:#374151;font-size:14px;margin-bottom:14px;">{level['desc']}</div>
+                <div>{badges}</div>
             </div>""",
             unsafe_allow_html=True,
         )
