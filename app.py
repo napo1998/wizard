@@ -116,10 +116,18 @@ textarea {
     border-radius: 10px !important;
     border: 1.5px solid #93c5fd !important;
     color: #111827 !important;
+    background-color: #ffffff !important;
 }
 textarea:focus {
     border-color: #2563eb !important;
     box-shadow: 0 0 0 3px rgba(37,99,235,0.15) !important;
+    background-color: #ffffff !important;
+}
+
+/* Progress bar track */
+[data-testid="stProgressBar"] > div {
+    background-color: #dbeafe !important;
+    border-radius: 10px !important;
 }
 
 /* Code block */
